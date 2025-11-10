@@ -1,0 +1,52 @@
+# Dependencies
+node_modules
+frontend/node_modules
+
+# Build outputs
+dist
+build
+.next
+frontend/.next
+frontend/out
+
+# Hardhat
+artifacts
+cache
+fhevmTemp
+typechain
+types
+deployments/localhost
+
+# Environment variables
+.env
+.env.local
+.env.production.local
+.env.development.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Testing
+coverage
+coverage.json
+.nyc_output
+
+# Misc
+*.tgz
+.cache
+
