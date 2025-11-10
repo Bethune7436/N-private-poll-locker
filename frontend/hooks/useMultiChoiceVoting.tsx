@@ -58,51 +58,12 @@ export function useMultiChoiceVoting() {
     [contractAddress, isConnected, writeContractAsync]
   );
 
-  // Vote
+  // Vote - implementation removed for buggy version
   const vote = useCallback(
     async (pollId: number, optionIndex: number) => {
-      if (!contractAddress || !fhevm || !isConnected || !address) {
-        throw new Error("Wallet not connected or FHEVM not ready");
-      }
-
-      try {
-        setIsLoading(true);
-        setError(null);
-
-        // Create encrypted input
-        const input = fhevm.createEncryptedInput(contractAddress, address);
-        input.add32(optionIndex);
-        const encryptedInput = await input.encrypt();
-
-        // Convert Uint8Array to hex string for wagmi
-        const encryptedChoice = hexlify(encryptedInput.handles[0]) as `0x${string}`;
-        const proof = hexlify(encryptedInput.inputProof) as `0x${string}`;
-
-        console.log("[Vote] Encrypted input:", {
-          encryptedChoice,
-          proof,
-          choiceLength: encryptedChoice.length,
-          proofLength: proof.length,
-        });
-
-        // Submit vote
-        const hash = await writeContractAsync({
-          address: contractAddress,
-          abi: MultiChoiceVotingABI,
-          functionName: "vote",
-          args: [BigInt(pollId), encryptedChoice, proof],
-        });
-
-        return hash;
-      } catch (err: any) {
-        const errorMsg = err.message || "Failed to vote";
-        setError(errorMsg);
-        throw new Error(errorMsg);
-      } finally {
-        setIsLoading(false);
-      }
+      // Implementation intentionally removed
     },
-    [contractAddress, fhevm, isConnected, address, writeContractAsync]
+    []
   );
 
   // Request finalization (with auto-decryption in mock mode)

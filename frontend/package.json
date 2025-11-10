@@ -5,8 +5,6 @@
   "license": "BSD-3-Clause-Clear",
   "scripts": {
     "clean": "rimraf .next",
-    "dev": "npm run clean && npm run genabi && next dev",
-    "genabi": "node ./scripts/genabi.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
