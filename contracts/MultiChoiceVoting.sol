@@ -194,34 +194,6 @@ contract MultiChoiceVoting is SepoliaConfig {
         return _pollCount;
     }
 
-    /// @notice Get basic poll information
-    function getPollInfo(uint256 pollId)
-        external
-        view
-        pollExists(pollId)
-        returns (
-            string memory title,
-            string[] memory options,
-            uint64 startTime,
-            uint64 endTime,
-            address creator,
-            bool finalized,
-            bool decryptionPending,
-            uint256 totalVoters
-        )
-    {
-        Poll storage poll = _polls[pollId];
-        return (
-            poll.title,
-            poll.options,
-            poll.startTime,
-            poll.endTime,
-            poll.creator,
-            poll.finalized,
-            poll.decryptionPending,
-            poll.totalVoters
-        );
-    }
 
     /// @notice Get encrypted vote counts (returns as bytes32 array)
     function getEncryptedCounts(uint256 pollId)
