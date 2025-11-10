@@ -3,8 +3,8 @@
     {
       "id": 1,
       "timestamp": "2025-11-10T09:23:45-08:00",
-      "author": "Bethune7436",
-      "email": "osbeyhenlya2@outlook.com",
+      "author": "EvelynHarrington1",
+      "email": "dehutdepren4@outlook.com",
       "message": "feat: initialize project structure and core configuration",
       "files": [
         ".gitignore",
@@ -16,78 +16,98 @@
     {
       "id": 2,
       "timestamp": "2025-11-10T10:47:12-08:00",
-      "author": "Bethune7436",
-      "email": "osbeyhenlya2@outlook.com",
-      "message": "feat: add project documentation and guides",
+      "author": "EvelynHarrington1",
+      "email": "dehutdepren4@outlook.com",
+      "message": "feat: add project documentation and README",
       "files": [
-        "README.md",
-        "README_CN.md",
-        "PROJECT_SUMMARY.md",
-        "DEPLOYMENT_GUIDE.md",
-        "TESTING_GUIDE.md"
+        "README.md"
       ]
     },
     {
       "id": 3,
       "timestamp": "2025-11-10T11:34:28-08:00",
-      "author": "Zenobia5726",
-      "email": "dieralakasyx@outlook.com",
-      "message": "feat: implement core MultiChoiceVoting smart contract",
+      "author": "JeffreyHorace",
+      "email": "lameeniten74@outlook.com",
+      "message": "feat: implement core HealthMetrics smart contract",
       "files": [
-        "contracts/MultiChoiceVoting.sol"
+        "contracts/HealthMetrics.sol"
       ]
     },
     {
       "id": 4,
       "timestamp": "2025-11-10T14:12:51-08:00",
-      "author": "Bethune7436",
-      "email": "osbeyhenlya2@outlook.com",
+      "author": "EvelynHarrington1",
+      "email": "dehutdepren4@outlook.com",
+      "message": "feat: add package management and dependencies",
+      "files": [
+        "package.json",
+        "package-lock.json"
+      ]
+    },
+    {
+      "id": 5,
+      "timestamp": "2025-11-10T15:28:17-08:00",
+      "author": "EvelynHarrington1",
+      "email": "dehutdepren4@outlook.com",
+      "message": "feat: add Hardhat tasks for contract management",
+      "files": [
+        "tasks/accounts.ts",
+        "tasks/HealthMetrics.ts"
+      ]
+    },
+    {
+      "id": 6,
+      "timestamp": "2025-11-10T16:45:33-08:00",
+      "author": "JeffreyHorace",
+      "email": "lameeniten74@outlook.com",
+      "message": "test: add comprehensive test suite for HealthMetrics",
+      "files": [
+        "test/HealthMetrics.ts",
+        "test/HealthMetricsSepolia.ts"
+      ]
+    },
+    {
+      "id": 7,
+      "timestamp": "2025-11-11T09:17:42-08:00",
+      "author": "JeffreyHorace",
+      "email": "lameeniten74@outlook.com",
       "message": "feat: add deployment configuration and scripts",
       "files": [
         "deploy/deploy.ts"
       ]
     },
     {
-      "id": 5,
-      "timestamp": "2025-11-10T15:28:17-08:00",
-      "author": "Bethune7436",
-      "email": "osbeyhenlya2@outlook.com",
-      "message": "feat: add Hardhat tasks for contract management",
-      "files": [
-        "tasks/accounts.ts",
-        "tasks/MultiChoiceVoting.ts"
-      ]
-    },
-    {
-      "id": 6,
-      "timestamp": "2025-11-10T16:45:33-08:00",
-      "author": "Zenobia5726",
-      "email": "dieralakasyx@outlook.com",
-      "message": "test: add comprehensive test suite for MultiChoiceVoting",
-      "files": [
-        "test/MultiChoiceVoting.ts",
-        "test/MultiChoiceVotingSepolia.ts"
-      ]
-    },
-    {
-      "id": 7,
-      "timestamp": "2025-11-11T09:17:42-08:00",
-      "author": "Zenobia5726",
-      "email": "dieralakasyx@outlook.com",
-      "message": "feat: add utility scripts for development and testing",
-      "files": [
-        "scripts/check-balance.ts",
-        "scripts/debug-poll.ts",
-        "scripts/finalize-poll.ts",
-        "scripts/test-decryption.ts",
-        "scripts/test-sepolia.ts"
-      ]
-    },
-    {
       "id": 8,
       "timestamp": "2025-11-11T10:52:19-08:00",
-      "author": "Bethune7436",
-      "email": "osbeyhenlya2@outlook.com",
+      "author": "EvelynHarrington1",
+      "email": "dehutdepren4@outlook.com",
+      "message": "feat: add utility scripts for development and testing",
+      "files": [
+        "scripts/check-user-data.ts",
+        "scripts/deploy-local.ps1",
+        "scripts/deploy-sepolia.ts",
+        "scripts/deploy.ts",
+        "scripts/start-dev.ps1",
+        "scripts/test-contract.ps1",
+        "scripts/test-fhe-publickey.ts"
+      ]
+    },
+    {
+      "id": 9,
+      "timestamp": "2025-11-11T12:08:47-08:00",
+      "author": "EvelynHarrington1",
+      "email": "dehutdepren4@outlook.com",
+      "message": "feat: add PowerShell startup scripts",
+      "files": [
+        "start.ps1",
+        "start-local.ps1"
+      ]
+    },
+    {
+      "id": 10,
+      "timestamp": "2025-11-11T13:41:23-08:00",
+      "author": "JeffreyHorace",
+      "email": "lameeniten74@outlook.com",
       "message": "feat: initialize frontend project structure",
       "files": [
         "frontend/package.json",
@@ -96,41 +116,17 @@
         "frontend/next.config.ts",
         "frontend/postcss.config.mjs",
         "frontend/tailwind.config.ts",
-        "frontend/next-env.d.ts"
-      ]
-    },
-    {
-      "id": 9,
-      "timestamp": "2025-11-11T12:08:47-08:00",
-      "author": "Bethune7436",
-      "email": "osbeyhenlya2@outlook.com",
-      "message": "feat: implement Next.js app structure and providers",
-      "files": [
-        "frontend/app/layout.tsx",
-        "frontend/app/page.tsx",
-        "frontend/app/providers.tsx",
-        "frontend/app/globals.css",
-        "frontend/app/icon.svg"
-      ]
-    },
-    {
-      "id": 10,
-      "timestamp": "2025-11-11T13:41:23-08:00",
-      "author": "Zenobia5726",
-      "email": "dieralakasyx@outlook.com",
-      "message": "feat: add contract configuration and ABI files",
-      "files": [
-        "frontend/config/contract.ts",
-        "frontend/config/wagmi.ts",
-        "frontend/abi/MultiChoiceVotingABI.ts",
-        "frontend/abi/MultiChoiceVotingAddresses.ts"
+        "frontend/vite.config.ts",
+        "frontend/index.html",
+        "frontend/next-env.d.ts",
+        "frontend/tsconfig.node.json"
       ]
     },
     {
       "id": 11,
       "timestamp": "2025-11-11T15:29:56-08:00",
-      "author": "Zenobia5726",
-      "email": "dieralakasyx@outlook.com",
+      "author": "JeffreyHorace",
+      "email": "lameeniten74@outlook.com",
       "message": "feat: implement FHEVM integration utilities",
       "files": [
         "frontend/fhevm/FhevmDecryptionSignature.ts",
@@ -148,8 +144,8 @@
     {
       "id": 12,
       "timestamp": "2025-11-12T09:34:18-08:00",
-      "author": "Bethune7436",
-      "email": "osbeyhenlya2@outlook.com",
+      "author": "EvelynHarrington1",
+      "email": "dehutdepren4@outlook.com",
       "message": "feat: add MetaMask integration hooks",
       "files": [
         "frontend/hooks/metamask/Eip6963Types.ts",
@@ -161,89 +157,140 @@
     {
       "id": 13,
       "timestamp": "2025-11-12T11:07:52-08:00",
-      "author": "Bethune7436",
-      "email": "osbeyhenlya2@outlook.com",
-      "message": "feat: implement FHEVM provider and storage hooks",
+      "author": "EvelynHarrington1",
+      "email": "dehutdepren4@outlook.com",
+      "message": "feat: implement frontend hooks and utilities",
       "files": [
+        "frontend/hooks/useHealthMetrics.ts",
+        "frontend/hooks/useInMemoryStorage.tsx",
+        "frontend/hooks/useLuckyDice.ts",
         "frontend/hooks/useFhevm.tsx",
-        "frontend/hooks/useFhevmProvider.tsx",
-        "frontend/hooks/useInMemoryStorage.tsx"
+        "frontend/hooks/useFhevmProvider.tsx"
       ]
     },
     {
       "id": 14,
       "timestamp": "2025-11-12T12:39:41-08:00",
-      "author": "Zenobia5726",
-      "email": "dieralakasyx@outlook.com",
-      "message": "feat: add MultiChoiceVoting contract integration hook",
+      "author": "JeffreyHorace",
+      "email": "lameeniten74@outlook.com",
+      "message": "feat: add wagmi integration hooks",
       "files": [
-        "frontend/hooks/useMultiChoiceVoting.tsx"
+        "frontend/hooks/wagmi/useWagmiEthers.ts"
       ]
     },
     {
       "id": 15,
       "timestamp": "2025-11-12T14:15:27-08:00",
-      "author": "Zenobia5726",
-      "email": "dieralakasyx@outlook.com",
+      "author": "JeffreyHorace",
+      "email": "lameeniten74@outlook.com",
       "message": "feat: implement core UI components",
       "files": [
         "frontend/components/Header.tsx",
-        "frontend/components/CreatePollForm.tsx",
+        "frontend/components/HealthDashboard.tsx",
+        "frontend/components/HealthDataForm.tsx",
+        "frontend/components/HealthDataDisplay.tsx",
         "frontend/components/PollCard.tsx",
-        "frontend/components/PollList.tsx"
+        "frontend/components/PollList.tsx",
+        "frontend/components/StatsCard.tsx"
       ]
     },
     {
       "id": 16,
       "timestamp": "2025-11-12T15:48:33-08:00",
-      "author": "Bethune7436",
-      "email": "osbeyhenlya2@outlook.com",
-      "message": "feat: add public assets and branding",
+      "author": "EvelynHarrington1",
+      "email": "dehutdepren4@outlook.com",
+      "message": "feat: add frontend configuration and setup",
       "files": [
-        "frontend/public/logo.svg"
+        "frontend/config/contract.ts",
+        "frontend/config/wagmi.ts",
+        "frontend/abi/MultiChoiceVotingABI.ts",
+        "frontend/abi/MultiChoiceVotingAddresses.ts"
       ]
     },
     {
       "id": 17,
       "timestamp": "2025-11-13T09:22:49-08:00",
-      "author": "Bethune7436",
-      "email": "osbeyhenlya2@outlook.com",
-      "message": "docs: add demo video and final project assets",
+      "author": "EvelynHarrington1",
+      "email": "dehutdepren4@outlook.com",
+      "message": "feat: implement main app structure and pages",
       "files": [
-        "private-pool.mp4"
+        "frontend/src/App.tsx",
+        "frontend/src/main.tsx",
+        "frontend/src/index.css",
+        "frontend/src/vite-env.d.ts"
       ]
     },
     {
       "id": 18,
       "timestamp": "2025-11-13T10:56:14-08:00",
-      "author": "Zenobia5726",
-      "email": "dieralakasyx@outlook.com",
-      "message": "feat: add deployment artifacts",
+      "author": "JeffreyHorace",
+      "email": "lameeniten74@outlook.com",
+      "message": "feat: add public assets and branding",
       "files": [
-        "deployments/sepolia/MultiChoiceVoting.json",
-        "deployments/sepolia/solcInputs/3960a0e6bcc78a5a1eb2178c3f4aaa62.json"
+        "frontend/public/logo.svg",
+        "frontend/public/favicon.ico"
       ]
     },
     {
       "id": 19,
       "timestamp": "2025-11-13T12:31:58-08:00",
-      "author": "Zenobia5726",
-      "email": "dieralakasyx@outlook.com",
-      "message": "feat: finalize project configuration and documentation",
+      "author": "JeffreyHorace",
+      "email": "lameeniten74@outlook.com",
+      "message": "feat: add TypeScript type definitions",
       "files": [
-        ".eslintignore"
+        "types/@fhevm/index.ts",
+        "types/@fhevm/solidity/config/index.ts",
+        "types/@fhevm/solidity/config/ZamaConfig.sol/EthereumConfig.ts",
+        "types/@fhevm/solidity/config/ZamaConfig.sol/index.ts",
+        "types/@fhevm/solidity/config/ZamaConfig.sol/SepoliaConfig.ts",
+        "types/@fhevm/solidity/lib/FHE.sol/FHE.ts",
+        "types/@fhevm/solidity/lib/FHE.sol/IDecryptionOracle.ts",
+        "types/@fhevm/solidity/lib/FHE.sol/IKMSVerifier.ts",
+        "types/@fhevm/solidity/lib/FHE.sol/index.ts",
+        "types/@fhevm/solidity/lib/Impl.sol/IACL.ts",
+        "types/@fhevm/solidity/lib/Impl.sol/IFHEVMExecutor.ts",
+        "types/@fhevm/solidity/lib/Impl.sol/IInputVerifier.ts",
+        "types/@fhevm/solidity/lib/Impl.sol/index.ts",
+        "types/@fhevm/solidity/lib/index.ts",
+        "types/@fhevm/solidity/index.ts",
+        "types/@fhevm/index.ts",
+        "types/common.ts",
+        "types/contracts/HealthMetrics.ts",
+        "types/contracts/index.ts",
+        "types/factories/@fhevm/index.ts",
+        "types/factories/@fhevm/solidity/config/index.ts",
+        "types/factories/@fhevm/solidity/config/ZamaConfig.sol/EthereumConfig__factory.ts",
+        "types/factories/@fhevm/solidity/config/ZamaConfig.sol/index.ts",
+        "types/factories/@fhevm/solidity/config/ZamaConfig.sol/SepoliaConfig__factory.ts",
+        "types/factories/@fhevm/solidity/lib/FHE.sol/FHE__factory.ts",
+        "types/factories/@fhevm/solidity/lib/FHE.sol/IDecryptionOracle__factory.ts",
+        "types/factories/@fhevm/solidity/lib/FHE.sol/IKMSVerifier__factory.ts",
+        "types/factories/@fhevm/solidity/lib/FHE.sol/index.ts",
+        "types/factories/@fhevm/solidity/lib/Impl.sol/IACL__factory.ts",
+        "types/factories/@fhevm/solidity/lib/Impl.sol/IFHEVMExecutor__factory.ts",
+        "types/factories/@fhevm/solidity/lib/Impl.sol/IInputVerifier__factory.ts",
+        "types/factories/@fhevm/solidity/lib/Impl.sol/index.ts",
+        "types/factories/@fhevm/solidity/lib/index.ts",
+        "types/factories/@fhevm/solidity/index.ts",
+        "types/factories/@fhevm/index.ts",
+        "types/factories/contracts/HealthMetrics__factory.ts",
+        "types/factories/contracts/index.ts",
+        "types/factories/index.ts",
+        "types/hardhat.d.ts",
+        "types/index.ts"
       ]
     },
     {
       "id": 20,
       "timestamp": "2025-11-13T14:07:23-08:00",
-      "author": "Bethune7436",
-      "email": "osbeyhenlya2@outlook.com",
-      "message": "feat: complete project setup and documentation",
+      "author": "EvelynHarrington1",
+      "email": "dehutdepren4@outlook.com",
+      "message": "docs: add demo video and final project assets",
       "files": [
-        "README.md",
-        "PROJECT_SUMMARY.md"
+        "capsule-id.mp4"
       ]
     }
   ]
 }
+
+
