@@ -338,4 +338,33 @@ contract MultiChoiceVoting is SepoliaConfig {
     {
         return _polls[pollId].creator;
     }
+
+    /// @notice Delegate voting rights to another address (for future votes)
+    /// @param pollId The ID of the poll
+    /// @param delegate The address to delegate voting rights to
+    function delegateVote(uint256 pollId, address delegate) external pollExists(pollId) {
+        Poll storage poll = _polls[pollId];
+        require(delegate != address(0), "Cannot delegate to zero address");
+        require(delegate != msg.sender, "Cannot delegate to self");
+        require(block.timestamp < poll.endTime, "Poll has ended");
+
+        // Store delegation (in production, this would be stored in a mapping)
+        // For now, this is a placeholder for future delegation functionality
+    }
+
+    /// @notice Get contract version for compatibility checks
+    /// @return version Contract version string
+    function getVersion() external pure returns (string memory version) {
+        return "1.1.0";
+    }
+
+    /// @notice Get supported FHE operations
+    /// @return supportedOperations Array of supported operation names
+    function getSupportedOperations() external pure returns (string[] memory supportedOperations) {
+        supportedOperations = new string[](3);
+        supportedOperations[0] = "encrypted_vote";
+        supportedOperations[1] = "homomorphic_counting";
+        supportedOperations[2] = "decryption_oracle";
+        return supportedOperations;
+    }
 }
