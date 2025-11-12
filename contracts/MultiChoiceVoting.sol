@@ -194,6 +194,34 @@ contract MultiChoiceVoting is SepoliaConfig {
         return _pollCount;
     }
 
+    /// @notice Get basic poll information
+    function getPollInfo(uint256 pollId)
+        external
+        view
+        pollExists(pollId)
+        returns (
+            string memory title,
+            string[] memory options,
+            uint64 startTime,
+            uint64 endTime,
+            address creator,
+            bool finalized,
+            bool decryptionPending,
+            uint256 totalVoters
+        )
+    {
+        Poll storage poll = _polls[pollId];
+        return (
+            poll.title,
+            poll.options,
+            poll.startTime,
+            poll.endTime,
+            poll.creator,
+            poll.finalized,
+            poll.decryptionPending,
+            poll.totalVoters
+        );
+    }
 
     /// @notice Get encrypted vote counts (returns as bytes32 array)
     function getEncryptedCounts(uint256 pollId)
@@ -262,5 +290,52 @@ contract MultiChoiceVoting is SepoliaConfig {
         returns (uint256)
     {
         return _polls[pollId].requestId;
+    }
+
+    /// @notice Get voting statistics for a poll
+    /// @param pollId The ID of the poll
+    /// @return totalVoters Total number of voters
+    /// @return isActive Whether voting is currently active
+    /// @return timeRemaining Seconds remaining until voting ends (0 if ended)
+    function getVotingStats(uint256 pollId)
+        external
+        view
+        pollExists(pollId)
+        returns (uint256 totalVoters, bool isActive, uint256 timeRemaining)
+    {
+        Poll storage poll = _polls[pollId];
+        totalVoters = poll.totalVoters;
+
+        uint256 currentTime = block.timestamp;
+        if (currentTime >= poll.startTime && currentTime <= poll.endTime && !poll.finalized) {
+            isActive = true;
+            timeRemaining = poll.endTime - currentTime;
+        } else {
+            isActive = false;
+            timeRemaining = 0;
+        }
+    }
+
+    /// @notice Emergency pause functionality for contract owner
+    /// @param pollId The ID of the poll to pause
+    function emergencyPause(uint256 pollId) external pollExists(pollId) {
+        Poll storage poll = _polls[pollId];
+        require(msg.sender == poll.creator, "Only poll creator can pause");
+
+        // Mark poll as finalized to prevent further voting
+        poll.finalized = true;
+        poll.decryptionPending = false;
+    }
+
+    /// @notice Get poll creator
+    /// @param pollId The ID of the poll
+    /// @return creator Address of the poll creator
+    function getPollCreator(uint256 pollId)
+        external
+        view
+        pollExists(pollId)
+        returns (address creator)
+    {
+        return _polls[pollId].creator;
     }
 }
