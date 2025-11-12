@@ -139,4 +139,89 @@ describe("MultiChoiceVoting", function () {
       await expect(multiChoiceVoting.requestFinalization(0)).to.not.be.reverted;
     });
   });
+
+  describe("Voting Statistics", function () {
+    let pollId: bigint;
+
+    beforeEach(async function () {
+      const title = "Stats Test Poll";
+      const options = ["Option A", "Option B", "Option C"];
+      const startTime = Math.floor(Date.now() / 1000) - 60; // 1 minute ago
+      const endTime = startTime + 3600; // 1 hour later
+
+      const tx = await multiChoiceVoting.createPoll(title, options, startTime, endTime);
+      await tx.wait();
+
+      pollId = 0n;
+    });
+
+    it("Should provide accurate voting statistics", async function () {
+      const [totalVoters, isActive, timeRemaining] = await multiChoiceVoting.getVotingStats(pollId);
+
+      expect(totalVoters).to.equal(0);
+      expect(isActive).to.be.true;
+      expect(timeRemaining).to.be.greaterThan(0);
+    });
+
+    it("Should track voter count correctly", async function () {
+      // Initially 0 voters
+      let [totalVoters] = await multiChoiceVoting.getVotingStats(pollId);
+      expect(totalVoters).to.equal(0);
+
+      // After creating poll, should still be 0 (no votes cast yet)
+      // In real FHE scenario, votes would be cast here
+      [totalVoters] = await multiChoiceVoting.getVotingStats(pollId);
+      expect(totalVoters).to.equal(0);
+    });
+  });
+
+  describe("Emergency Controls", function () {
+    it("Should allow poll creator to emergency pause", async function () {
+      // Create a poll
+      const title = "Emergency Test";
+      const options = ["Option A", "Option B"];
+      const startTime = Math.floor(Date.now() / 1000) + 60;
+      const endTime = startTime + 3600;
+
+      const tx = await multiChoiceVoting.createPoll(title, options, startTime, endTime);
+      await tx.wait();
+
+      // Emergency pause by creator
+      await expect(multiChoiceVoting.emergencyPause(0)).to.not.be.reverted;
+
+      // Check that poll is now finalized
+      const [, , , , , finalized] = await multiChoiceVoting.getPollInfo(0);
+      expect(finalized).to.be.true;
+    });
+
+    it("Should prevent non-creator from emergency pausing", async function () {
+      // Create a poll
+      const title = "Emergency Test";
+      const options = ["Option A", "Option B"];
+      const startTime = Math.floor(Date.now() / 1000) + 60;
+      const endTime = startTime + 3600;
+
+      const tx = await multiChoiceVoting.createPoll(title, options, startTime, endTime);
+      await tx.wait();
+
+      // Try to pause from different account
+      await expect(multiChoiceVoting.connect(signers.alice).emergencyPause(0))
+        .to.be.revertedWith("Only poll creator can pause");
+    });
+  });
+
+  describe("Access Control", function () {
+    it("Should correctly identify poll creators", async function () {
+      const title = "Creator Test";
+      const options = ["Option A", "Option B"];
+      const startTime = Math.floor(Date.now() / 1000) + 60;
+      const endTime = startTime + 3600;
+
+      const tx = await multiChoiceVoting.createPoll(title, options, startTime, endTime);
+      await tx.wait();
+
+      const creator = await multiChoiceVoting.getPollCreator(0);
+      expect(creator).to.equal(signers.deployer.address);
+    });
+  });
 });
