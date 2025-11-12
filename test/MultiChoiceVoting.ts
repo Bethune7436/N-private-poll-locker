@@ -224,4 +224,65 @@ describe("MultiChoiceVoting", function () {
       expect(creator).to.equal(signers.deployer.address);
     });
   });
+
+  describe("Contract Metadata", function () {
+    it("Should return correct contract version", async function () {
+      const version = await multiChoiceVoting.getVersion();
+      expect(version).to.equal("1.1.0");
+    });
+
+    it("Should return supported operations", async function () {
+      const operations = await multiChoiceVoting.getSupportedOperations();
+      expect(operations).to.deep.equal([
+        "encrypted_vote",
+        "homomorphic_counting",
+        "decryption_oracle"
+      ]);
+    });
+  });
+
+  describe("Vote Delegation", function () {
+    let pollId: bigint;
+
+    beforeEach(async function () {
+      const title = "Delegation Test";
+      const options = ["Option A", "Option B"];
+      const startTime = Math.floor(Date.now() / 1000) + 60;
+      const endTime = startTime + 3600;
+
+      const tx = await multiChoiceVoting.createPoll(title, options, startTime, endTime);
+      await tx.wait();
+
+      pollId = 0n;
+    });
+
+    it("Should allow vote delegation", async function () {
+      await expect(multiChoiceVoting.delegateVote(pollId, signers.alice.address))
+        .to.not.be.reverted;
+    });
+
+    it("Should reject delegation to zero address", async function () {
+      await expect(multiChoiceVoting.delegateVote(pollId, ethers.ZeroAddress))
+        .to.be.revertedWith("Cannot delegate to zero address");
+    });
+
+    it("Should reject self-delegation", async function () {
+      await expect(multiChoiceVoting.delegateVote(pollId, signers.deployer.address))
+        .to.be.revertedWith("Cannot delegate to self");
+    });
+
+    it("Should reject delegation after poll ends", async function () {
+      // Create a poll that has already ended
+      const title = "Ended Poll";
+      const options = ["Option A", "Option B"];
+      const startTime = Math.floor(Date.now() / 1000) - 3600;
+      const endTime = startTime + 1800; // Already ended
+
+      const tx = await multiChoiceVoting.createPoll(title, options, startTime, endTime);
+      await tx.wait();
+
+      await expect(multiChoiceVoting.delegateVote(1, signers.alice.address))
+        .to.be.revertedWith("Poll has ended");
+    });
+  });
 });
