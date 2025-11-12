@@ -355,6 +355,11 @@ export function PollCard({ pollId }: PollCardProps) {
           </div>
         )}
 
+        <div className="flex items-center justify-between rounded-lg border border-slate-600/30 bg-slate-800/30 px-4 py-3 text-sm">
+          <span className="text-slate-300">Total voters:</span>
+          <span className="font-semibold text-slate-100">{pollInfo?.[7]?.toString() || "0"}</span>
+        </div>
+
         {!finalized && (
           <button
             onClick={handleFinalize}
