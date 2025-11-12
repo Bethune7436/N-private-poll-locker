@@ -8,6 +8,11 @@ import {SepoliaConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
 /// @notice Allows users to create polls and vote with encrypted choices
 /// @dev Uses FHEVM for encrypted vote counting and decryption oracle for results
 contract MultiChoiceVoting is SepoliaConfig {
+    // Constants for gas optimization
+    uint256 private constant MAX_OPTIONS = 16;
+    uint256 private constant MIN_OPTIONS = 2;
+    uint256 private constant MAX_TITLE_LENGTH = 200;
+
     struct Poll {
         string title;
         string[] options;
@@ -63,8 +68,8 @@ contract MultiChoiceVoting is SepoliaConfig {
         uint64 startTime,
         uint64 endTime
     ) external returns (uint256 pollId) {
-        require(bytes(title).length > 0, "Title cannot be empty");
-        require(options.length >= 2 && options.length <= 16, "Must have 2-16 options");
+        require(bytes(title).length > 0 && bytes(title).length <= MAX_TITLE_LENGTH, "Title cannot be empty or too long");
+        require(options.length >= MIN_OPTIONS && options.length <= MAX_OPTIONS, "Invalid number of options");
         require(endTime > startTime, "End time must be after start time");
         require(endTime > block.timestamp, "End time must be in the future");
 
