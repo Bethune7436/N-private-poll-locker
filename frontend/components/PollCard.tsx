@@ -360,6 +360,10 @@ export function PollCard({ pollId }: PollCardProps) {
           <span className="font-semibold text-slate-100">{pollInfo?.[7]?.toString() || "0"}</span>
         </div>
 
+        <div className="text-center text-xs text-slate-400">
+          Poll #{pollId} • Created by {pollInfo?.[4] ? `${pollInfo[4].slice(0, 6)}...${pollInfo[4].slice(-4)}` : "Unknown"}
+        </div>
+
         {!finalized && (
           <button
             onClick={handleFinalize}
