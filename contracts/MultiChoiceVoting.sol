@@ -372,4 +372,47 @@ contract MultiChoiceVoting is SepoliaConfig {
         supportedOperations[2] = "decryption_oracle";
         return supportedOperations;
     }
+
+    /// @notice Create multiple polls in a single transaction (gas optimized)
+    /// @param titles Array of poll titles
+    /// @param optionsArray Array of option arrays for each poll
+    /// @param startTimes Array of start times for each poll
+    /// @param endTimes Array of end times for each poll
+    /// @return pollIds Array of created poll IDs
+    function createMultiplePolls(
+        string[] calldata titles,
+        string[][] calldata optionsArray,
+        uint64[] calldata startTimes,
+        uint64[] calldata endTimes
+    ) external returns (uint256[] memory pollIds) {
+        require(titles.length == optionsArray.length &&
+                optionsArray.length == startTimes.length &&
+                startTimes.length == endTimes.length, "Array length mismatch");
+        require(titles.length > 0 && titles.length <= 5, "Invalid number of polls (1-5)");
+
+        pollIds = new uint256[](titles.length);
+
+        for (uint256 i = 0; i < titles.length; i++) {
+            pollIds[i] = _pollCount++;
+            Poll storage poll = _polls[pollIds[i]];
+
+            require(bytes(titles[i]).length > 0 && bytes(titles[i]).length <= MAX_TITLE_LENGTH, "Invalid title");
+            require(optionsArray[i].length >= MIN_OPTIONS && optionsArray[i].length <= MAX_OPTIONS, "Invalid options");
+
+            poll.title = titles[i];
+            poll.options = optionsArray[i];
+            poll.startTime = startTimes[i];
+            poll.endTime = endTimes[i];
+            poll.creator = msg.sender;
+            poll.finalized = false;
+            poll.decryptionPending = false;
+            poll.totalVoters = 0;
+
+            // Initialize encrypted counts
+            poll.encryptedCounts = new euint32[](optionsArray[i].length);
+            poll.decryptedCounts = new uint32[](optionsArray[i].length);
+
+            emit PollCreated(pollIds[i], titles[i], optionsArray[i], startTimes[i], endTimes[i], msg.sender);
+        }
+    }
 }
