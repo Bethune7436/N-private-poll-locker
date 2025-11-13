@@ -11,10 +11,15 @@ A privacy-preserving voting platform built with Fully Homomorphic Encryption (FH
 ## Features
 
 - **Fully Encrypted Voting**: All votes are encrypted using FHE technology, ensuring complete privacy
-- **Multi-Choice Polls**: Create polls with 2-16 options
+- **Multi-Choice Polls**: Create polls with 2-16 options with optimized gas usage
+- **Voting Statistics**: Real-time voter count and poll status tracking
+- **Emergency Controls**: Poll creators can pause voting for security reasons
+- **Vote Delegation**: Framework for future voting rights delegation
 - **Transparent Results**: Cryptographically verified results after finalization
+- **Poll Filtering**: Advanced filtering system for better poll management
 - **User-Friendly Interface**: Modern, responsive UI with Rainbow Kit wallet integration
 - **End-to-End Encryption**: Data encryption and decryption loop with smart contract integration
+- **Gas Optimization**: Constants-based validation for efficient contract execution
 
 ## 🔐 Core Smart Contract
 
