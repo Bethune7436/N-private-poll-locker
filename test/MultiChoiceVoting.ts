@@ -285,4 +285,70 @@ describe("MultiChoiceVoting", function () {
         .to.be.revertedWith("Poll has ended");
     });
   });
+
+  describe("Gas Optimization", function () {
+    it("Should enforce maximum title length", async function () {
+      const longTitle = "a".repeat(201); // Too long
+      const options = ["Option A", "Option B"];
+      const startTime = Math.floor(Date.now() / 1000) + 60;
+      const endTime = startTime + 3600;
+
+      await expect(multiChoiceVoting.createPoll(longTitle, options, startTime, endTime))
+        .to.be.revertedWith("Title cannot be empty or too long");
+    });
+
+    it("Should enforce minimum options requirement", async function () {
+      const title = "Test Poll";
+      const options = ["Only one"]; // Too few
+      const startTime = Math.floor(Date.now() / 1000) + 60;
+      const endTime = startTime + 3600;
+
+      await expect(multiChoiceVoting.createPoll(title, options, startTime, endTime))
+        .to.be.revertedWith("Invalid number of options");
+    });
+
+    it("Should enforce maximum options limit", async function () {
+      const title = "Test Poll";
+      const options = Array.from({ length: 17 }, (_, i) => `Option ${i + 1}`); // Too many
+      const startTime = Math.floor(Date.now() / 1000) + 60;
+      const endTime = startTime + 3600;
+
+      await expect(multiChoiceVoting.createPoll(title, options, startTime, endTime))
+        .to.be.revertedWith("Invalid number of options");
+    });
+  });
+
+  describe("Input Validation", function () {
+    it("Should accept valid option counts", async function () {
+      const title = "Valid Options Test";
+      const options = ["Option A", "Option B", "Option C", "Option D"]; // Valid count
+      const startTime = Math.floor(Date.now() / 1000) + 60;
+      const endTime = startTime + 3600;
+
+      const tx = await multiChoiceVoting.createPoll(title, options, startTime, endTime);
+      await tx.wait();
+
+      expect(await multiChoiceVoting.getPollCount()).to.be.greaterThan(0);
+    });
+
+    it("Should handle edge case option counts", async function () {
+      // Test minimum options (2)
+      let title = "Min Options";
+      let options = ["A", "B"];
+      let startTime = Math.floor(Date.now() / 1000) + 60;
+      let endTime = startTime + 3600;
+
+      await expect(multiChoiceVoting.createPoll(title, options, startTime, endTime))
+        .to.not.be.reverted;
+
+      // Test maximum options (16)
+      title = "Max Options";
+      options = Array.from({ length: 16 }, (_, i) => `Opt${i + 1}`);
+      startTime = Math.floor(Date.now() / 1000) + 60;
+      endTime = startTime + 3600;
+
+      await expect(multiChoiceVoting.createPoll(title, options, startTime, endTime))
+        .to.not.be.reverted;
+    });
+  });
 });
