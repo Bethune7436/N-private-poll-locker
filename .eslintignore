@@ -1,0 +1,10 @@
+node_modules
+artifacts
+cache
+coverage
+types
+typechain
+frontend/.next
+frontend/out
+dist
+
