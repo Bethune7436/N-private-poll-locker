@@ -14,8 +14,11 @@ const Spinner = () => (
   <span className="inline-flex h-5 w-5 animate-spin rounded-full border-[3px] border-slate-200/60 border-t-transparent" />
 );
 
+type FilterType = "all" | "active" | "ended" | "finalized";
+
 export function PollList({ refreshTrigger }: PollListProps) {
   const [pollIds, setPollIds] = useState<number[]>([]);
+  const [filter, setFilter] = useState<FilterType>("all");
   const { contractAddress, chainId } = useMultiChoiceVoting();
   const { isConnected } = useAccount();
 
