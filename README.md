@@ -4,7 +4,7 @@ A privacy-preserving voting platform built with Fully Homomorphic Encryption (FH
 
 ## 🚀 Live Demo
 
-**Deployed Application**: [https://private-poll-mu.vercel.app/](https://private-poll-mu.vercel.app/)
+**Deployed Application**: [https://n-private-poll-locker-kegs.vercel.app/](https://n-private-poll-locker-kegs.vercel.app/)
 
 📹 **Demo Video**: [Watch the demo](./private-pool.mp4)
 
